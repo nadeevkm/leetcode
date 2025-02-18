@@ -10,7 +10,7 @@ class Solution:
     def partition(self, head: Optional[ListNode], x: int) -> Optional[ListNode]:
         less = dummyL = ListNode()
         great = dummyG = ListNode()
-        curr = head
+        curr = head  # can be omitted, just use head
         while curr:
             if curr.val < x:
                 less.next = curr
