@@ -1,1 +1,23 @@
 
+---
+BFS - forget to add to 'reached' after adding to Queue
+
+DFS - forget to add nodes to visited after 'visit'
+
+Also in Graphs when we get neighbours from neigbList/adjList
+not all V can have neighbours, so
+    for neighb in adjMap[v]
+will throw an error, we need to use default value in adjMap[v] is null , like
+    for neighb in adjMap.get(v, set())
+
+---
+While processing some array with some running memory buffer (i.e. count),
+don't forget to write data left in memory after processing the last element of array!
+
+
+---
+Forgot about initial filling of DP table
+for ex. dp[0][0]
+
+---
+Use given table instead of dp[] table in calculations of dp[] cell
