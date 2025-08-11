@@ -19,6 +19,25 @@ class Solution {
     }
 }
 
+class SolutionMoreConcise {
+    public int hIndex(int[] citations) {
+        int n = citations.length;
+        int[] buckets = new int[n + 1];
+        for (int i = 0; i < n; i++){
+            int ind = citations[i] > n ? n : citations[i];
+            buckets[ind]++;
+        }
+        int cnt = 0;
+        for (int i = buckets.length - 1; i >= 0; i--){
+            cnt += buckets[i];
+            if (cnt >= i){
+                return i;
+            }
+        }
+        return cnt;
+    }
+}
+
 class Check {
     public static void main(String[] args) {
         var sol = new Solution();
@@ -27,3 +46,4 @@ class Check {
         var pp = sol.hIndex(nums);
     }
 }
+
