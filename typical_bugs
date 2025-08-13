@@ -1,1 +1,53 @@
-check
+checkErroneous loop boundaries:
+ - arr.length instead of arr.length - 1
+ - forget to pre-check outOfBounds in while(..) in addition to some condition statement
+
+---
+BFS - forget to add to 'reached' after adding to Queue
+
+DFS - forget to add nodes to visited after 'visit'
+
+Also in Graphs when we get neighbours from neigbList/adjList
+not all V can have neighbours, so
+    for neighb in adjMap[v]
+will throw an error, we need to use default value in adjMap[v] is null , like
+    for neighb in adjMap.get(v, set())  ( adjMap.getOrDefault(v, emptyList()) )
+
+---
+While processing some array with some running memory buffer (i.e. count),
+don't forget to write data left in memory after processing the last element of array!
+
+                                           ---
+                                           When resetting some value (to 0 for example), reset it to initial value, not always 0!!!
+It could have been initially '1' for example (count of smth) and then its important not to reset it to 0, but to 1.
+
+---
+Forgot about initial filling of DP table
+for ex. dp[0][0]
+
+---
+Use given table instead of dp[] table in calculations of dp[] cell
+
+---
+Use another array data upon processing specific array
+(example in topKFrequent element quick search upon unique elements of this array is used,
+so I used several times data(i.e. size and references) of initial array instead ot this specific unique array)
+
+---
+When modifying linked list nodes, do not break links, which might be needed in further processing
+(and don't do unnecessary modifications!!)
+
+
+
+=================Hints and Key words============
+If the range of possible answers is low - just iterate over them (i.e. `what is the optimal clock position..' - its only 360 ones)
+
+If the lower bound and upper bound is known, we can try to find answer by the binary search (Koko Eats Bananas)
+
+'..Unique smth..' - might be a hint to the Set usage
+
+`What is a minimum..?` question might lead to PriorityQueue / Greedy approaches where we try to figure out what is the most optimal configuration and how to reach it..
+
+`..minimum to reach..?` can lead to BFS solutions. Even for non graph like problems (like Jump Game II https://leetcode.com/problems/jump-game-ii/submissions/1292257082/)
+
+Some problems are just about noticing the pattern (ex. next permutation of an array), so in order to see it, you need to check/run several examples
