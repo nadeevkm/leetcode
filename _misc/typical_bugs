@@ -18,6 +18,10 @@ While processing some array with some running memory buffer (i.e. count),
 don't forget to write data left in memory after processing the last element of array!
 
 ---
+Forget about leftover offset and return base index as an answer when using additonal offset during processing/calculations 
+instead of this res = index + offset (ex. 80. remove-duplicates-from-sorted-array-ii)
+
+---
 When resetting some value (to 0 for example), reset it to initial value, not always 0!!!
 It could have been initially '1' for example (count of smth) and then its important not to reset it to 0, but to 1.
 
