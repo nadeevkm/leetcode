@@ -41,6 +41,17 @@ so I used several times data(i.e. size and references) of initial array instead 
 When modifying linked list nodes, do not break links, which might be needed in further processing
 (and don't do unnecessary modifications!!)
 
+---
+When using similar/non-meaningful/simplest namings in variables - mixing and messing them. Like
+        for (int i = num; i <= n; i++) {
+            curr.add(num); <-- should be i
+            backtrack(n, k, curr, num + 1); <-- should be i
+            ...
+better:
+        for (int num = stNum; num <= nLen; num++) {
+            curr.add(num);
+            backtrack(n, k, curr, num + 1);
+            ...
 
 
 =================Hints and Key words============
