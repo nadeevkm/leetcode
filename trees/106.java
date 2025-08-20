@@ -27,7 +27,7 @@ class Solution {
         int pivot = l;
         while (inorder[pivot] != root.val) {
             pivot++;
-        }  // !!! - in order not to do it every time, we can preprocess inorder array to the map of every value and according index
+        }  // !!! - in order not to do it every time, we can preprocess inorder array to the map of every value and according index (S = O(1) => O(n), T = O(n^2) ? => O(n))
         root.right = buildTree(inorder, postorder, pivot + 1, r, postorderPointWrapper);
         root.left = buildTree(inorder, postorder, l, pivot - 1, postorderPointWrapper);
         return root;
