@@ -1,0 +1,52 @@
+import com.db.cb.liq.asl.core.web.spring.client.ApiClientPropertiesTemplate
+import com.fasterxml.jackson.databind.ObjectMapper
+import feign.Client
+import feign.Feign
+import feign.Request
+import feign.Retryer
+import feign.jackson.JacksonDecoder
+import feign.jackson.JacksonEncoder
+import java.util.concurrent.TimeUnit
+import org.springframework.cloud.openfeign.support.SpringMvcContract
+
+object ApiClientConfigurationHelper {
+    inline fun <reified T> buildFeignClient(
+        jacksonObjectMapper: ObjectMapper,
+        properties: ApiClientPropertiesTemplate,
+        client: Client
+    ): T = buildFeignClient(jacksonObjectMapper, properties, client, T::class.java)
+
+    @JvmStatic
+    fun <T> buildFeignClient(
+        jacksonObjectMapper: ObjectMapper,
+        properties: ApiClientPropertiesTemplate,
+        client: Client,
+        apiType: Class<T> // The explicit class parameter for Java
+    ): T = Feign.builder()
+        .encoder(JacksonEncoder(jacksonObjectMapper))
+        .decoder(JacksonDecoder(jacksonObjectMapper))
+        .contract(SpringMvcContract())
+        .retryer(
+            with(properties.retryProperties) {
+                Retryer.Default(
+                    periodMillis,
+                    maxPeriodMillis,
+                    attempts
+                )
+            }
+        )
+        .client(client)
+        .options(
+            with(properties.timeoutProperties) {
+                Request.Options(
+                    connectTimeout,
+                    TimeUnit.SECONDS,
+                    readTimeout,
+                    TimeUnit.SECONDS,
+                    true
+                )
+            }
+        )
+        .errorDecoder(RetryableErrorDecoder())
+        .target(apiType, properties.url)
+}
