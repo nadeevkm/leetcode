@@ -1,0 +1,14 @@
+
+1. try to see the patterns in task data:
+
+    ex. 13. roman to integer:
+    roman numbers usually goes decreasing from left to right,
+    but IV, IX.. in these numbers first is smaller than the latter => we can check this pattern and use it in code
+
+
+2. if number of possible values is restricted than it is possible to iterate over all possible values (which will be still O(1))
+ or use bucket sorting (like in 1046. Last Stone Weight, where 1 <= stones[i] <= 1000)
+
+3. think of preprocessing the data, can one pass gives us some needed knowledge?
+ex. in 123. Longest Conscutive Sequence - we preprocess the array, form set from it, and can get left and right neighbour of the number
+for the O(1)
