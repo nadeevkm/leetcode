@@ -1,3 +1,54 @@
+class SolutionInitial {
+    public String reverseWords(String s) {
+        var sb = new StringBuffer(s);
+        reverse(sb, 0, sb.length() - 1);
+
+        int left = 0;
+        int word = 0;
+        int curP = 0;
+
+        while (curP < sb.length()){
+            while(curP < sb.length() && sb.charAt(curP) == ' '){
+                curP++;
+            }
+
+            while (curP < sb.length() && sb.charAt(curP) != ' '){
+                if (left != 0 && left == word){
+                    sb.setCharAt(left, ' ');
+                    left++;
+                    word++;
+                }
+                char w = sb.charAt(curP);
+                sb.setCharAt(word, w);
+                word++;
+                curP++;
+            }
+
+            if (word != left) {
+                reverse(sb, left, word - 1);
+                left = word;
+            }
+        }
+
+        if (word < sb.length()) {
+            sb.delete(word, sb.length());
+        }
+
+        return sb.toString();
+    }
+
+    public void reverse(StringBuffer sb, int st, int end){
+        while (st < end){ // <---- made a serious error here !!! was st != end
+            char l = sb.charAt(st);
+            char r = sb.charAt(end);
+            sb.setCharAt(st, r);
+            sb.setCharAt(end, l);
+            st++;
+            end--;
+        }
+    }
+}
+
 class Solution {
     public String reverseWords(String s) {
         var chars = s.toCharArray();
