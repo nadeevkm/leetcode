@@ -21,3 +21,22 @@ public class Solution {
         return dp[len1][len2];
     }
 }
+
+class SolutionLCS {
+    public int minDistance(String word1, String word2) {
+        // using Longest Comon Subsequence search first
+        int l1 = word1.length();
+        int l2 = word2.length();
+        int[][] mem = new int[l1 + 1][l2 + 1];
+
+        for (int r = 1; r < l1 + 1; r++) {
+            for (int c = 1; c < l2 + 1; c++) {
+                mem[r][c] = (word2.charAt(c - 1) == word1.charAt(r - 1))
+                        ? 1 + mem[r-1][c-1]
+                        : Math.max(mem[r][c-1], mem[r-1][c]);
+            }
+        }
+
+        return (l1 - mem[l1][l2]) + (l2 - mem[l1][l2]);
+    }
+}
