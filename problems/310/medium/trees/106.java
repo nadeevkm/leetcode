@@ -13,6 +13,7 @@
  *     }
  * }
  */
+
 class Solution {
     public TreeNode buildTree(int[] inorder, int[] postorder) {
         return buildTree(inorder, postorder, 0, inorder.length - 1, new int[] { inorder.length - 1 });
@@ -31,5 +32,34 @@ class Solution {
         root.right = buildTree(inorder, postorder, pivot + 1, r, postorderPointWrapper);
         root.left = buildTree(inorder, postorder, l, pivot - 1, postorderPointWrapper);
         return root;
+    }
+}
+
+
+class SolutionMap{
+    public TreeNode buildTree(int[] inorder, int[] postorder) {
+        Map<Integer, Integer> indexMap = new HashMap<Integer, Integer>();
+        for (int i = 0; i < inorder.length; i++) {
+            indexMap.put(inorder[i], i);
+        }
+        return build(postorder, new int[] { postorder.length - 1 }, inorder, 0, inorder.length - 1, indexMap);
+    }
+
+    public TreeNode build(int[] postorder, int[] current, int[] inorder, int begin, int end,
+            Map<Integer, Integer> indexMap) {
+
+        if (begin > end || current[0] < 0) {
+            return null;
+        }
+
+        TreeNode node = new TreeNode(postorder[current[0]]);
+
+        int nextIndex = indexMap.get(node.val);
+
+        current[0] = current[0] - 1;
+
+        node.right = build(postorder, current, inorder, nextIndex + 1, end, indexMap);
+        node.left = build(postorder, current, inorder, begin, nextIndex - 1, indexMap);
+        return node;
     }
 }
