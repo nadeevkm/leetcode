@@ -1,0 +1,9 @@
+diamter tree + problem #310
+
+Actually, what we need to find in this problem is diameter of our tree: two nodes, that have the biggest distance between them. How we can do it? There is two-stage dfs algorighm to do it:
+
+1. Start from any node and run dfs, which calculate distances for all other nodes from this node as well as create parent for each node. What our fucntion will return in the end is the index of farthest node (there can be more than one and it is OK for us).
+2. Now, we need to start our dfs all over again from this node (that is why we use dfs_helper function - we need to clean our distances and parents arrays. When we run our dfs second time, we again find the farthest node.
+3. Finally, we create path between the first node we found and the second and it will be our diameter: if it has even number of nodes, we return 2 middle nodes, in other case we return 1 middle node.
+
+Complexity: time complexity is O(n), because we use our dfs twice. Space complexity is O(n) as well.
