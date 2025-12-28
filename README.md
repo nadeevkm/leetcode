@@ -9,6 +9,12 @@
   - Trie
 - Matrix
 - BinarySearch (put in Arrays/Strings ?)
+- BinaryMath
+- Stack (put in Arrays/Strings ?)
+- Intervals
+  - Basic
+  - SweepLine
+- Design
 - DP
   - Strings (one edit dist..)
   - State (house robber..)
