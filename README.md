@@ -1,0 +1,29 @@
+- Arrays
+  - SlidingWindow
+  - TwoPointers
+  - Greedy
+  - PrefixSums
+- Strings (maybe merge with arrays)
+  - SlidingWindows
+  - TwoPointers
+  - Trie
+- Matrix
+- BinarySearch (put in Arrays/Strings ?)
+- DP
+  - Strings (one edit dist..)
+  - State (house robber..)
+  - Totals (coins totals..)
+  - Paths/Matrix
+- Lists
+- Backtracking
+- Trees
+  - BFS
+  - DFS
+- Graph
+  - BFS
+  - DFS
+  - CycleDetection
+  - DSU
+  - Dejkstra
+  - TopoSort
+  - MST (Prim's)
