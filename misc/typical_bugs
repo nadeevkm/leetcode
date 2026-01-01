@@ -2,6 +2,7 @@ Erroneous loop boundaries:
  - arr.length instead of arr.length - 1
  - forget to pre-check outOfBounds in while(..) in addition to some condition statement
 
+Don't modify 'for' iteration pointer manually ( for (int i = 0; i < .. ; i++) { ... i--; .. } )  // 647_bug.java
 ---
 BFS - forget to add to 'reached' after adding to Queue
 
@@ -19,7 +20,7 @@ don't forget to write data left in memory after processing the last element of a
 
 ---
 Forget about leftover offset and return base index as an answer when using additonal offset during processing/calculations 
-instead of this res = index + offset (ex. 80. remove-duplicates-from-sorted-array-ii)
+instead of this res = index + offset (ex: 80. remove-duplicates-from-sorted-array-ii)
 
 ---
 When resetting some value (to 0 for example), reset it to initial value, not always 0!!!
